@@ -3,7 +3,7 @@
 Terrestrial laser scans of heritage objects and building elements, processed into
 web-ready 3D models that anyone can rotate in a browser or place at true size in AR.
 
-**Live gallery:** https://&lt;user&gt;.github.io/&lt;repo&gt;/
+**Live gallery:** [https://&lt;user&gt;.github.io/&lt;repo&gt;/](https://v-p-vignesh.github.io/scan-gallery/)
 
 ---
 
