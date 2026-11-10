@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 330" width="920" height="330" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="920" height="330" rx="10" fill="#fbfaf8"/>
+  <text x="24" y="32" font-size="15" font-weight="600" fill="#1b1a18">Baking: detail moves out of the triangles and into an image</text>
+  <text x="24" y="52" font-size="11.5" fill="#6b6660">Rays are cast from the simplified mesh out to the scan mesh. What they hit is written into a texture the GPU uses when shading.</text>
+
+  <g stroke="#e3dfd9" stroke-width="1">
+    <line x1="312" y1="76" x2="312" y2="312"/>
+    <line x1="620" y1="76" x2="620" y2="312"/>
+  </g>
+
+  <!-- 1 high poly -->
+  <text x="24" y="96" font-size="12.5" font-weight="600" fill="#1b1a18">High-poly — from the scan</text>
+  <text x="24" y="114" font-size="10.5" fill="#6b6660">6 400 000 triangles · ~300 MB</text>
+  <path d="M40,250 L56,214 L68,232 L84,196 L96,220 L112,186 L128,214 L142,180 L158,210 L174,184 L190,216 L206,192 L222,226 L238,206 L254,244 L272,222 L286,250"
+        fill="none" stroke="#3a3a3a" stroke-width="1.5"/>
+  <g fill="#8a6a3f">
+    <circle cx="56" cy="214" r="1.8"/><circle cx="84" cy="196" r="1.8"/><circle cx="112" cy="186" r="1.8"/>
+    <circle cx="142" cy="180" r="1.8"/><circle cx="174" cy="184" r="1.8"/><circle cx="206" cy="192" r="1.8"/>
+    <circle cx="238" cy="206" r="1.8"/><circle cx="272" cy="222" r="1.8"/>
+  </g>
+  <text x="24" y="282" font-size="10.5" fill="#6b6660">every chisel mark is a triangle</text>
+
+  <!-- 2 low poly + rays -->
+  <text x="336" y="96" font-size="12.5" font-weight="600" fill="#1b1a18">Low-poly + ray cast</text>
+  <text x="336" y="114" font-size="10.5" fill="#6b6660">50 000 triangles · smooth, featureless</text>
+  <path d="M352,250 L404,198 L470,182 L540,206 L598,250" fill="none" stroke="#3a3a3a" stroke-width="1.6"/>
+  <path d="M344,240 L398,186 L470,168 L546,194 L606,242" fill="none" stroke="#9a948c" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="336" y="160" font-size="10" fill="#9a948c">cage (extrusion)</text>
+  <g stroke="#8a6a3f" stroke-width="1.2" marker-end="url(#c1)">
+    <path d="M378,224 L372,206"/>
+    <path d="M412,196 L408,178"/>
+    <path d="M452,186 L450,168"/>
+    <path d="M494,188 L496,170"/>
+    <path d="M536,204 L540,186"/>
+    <path d="M572,228 L578,210"/>
+  </g>
+  <text x="336" y="282" font-size="10.5" fill="#6b6660">each texel shoots one ray and records what it finds</text>
+
+  <!-- 3 maps + result -->
+  <text x="644" y="96" font-size="12.5" font-weight="600" fill="#1b1a18">Baked maps → final GLB</text>
+  <text x="644" y="114" font-size="10.5" fill="#6b6660">2048 px normal + colour · 9 MB</text>
+
+  <rect x="644" y="130" width="84" height="84" rx="4" fill="#8080ff" stroke="#3a3a3a" stroke-width="1"/>
+  <g opacity="0.75">
+    <path d="M652,196 L664,166 L674,182 L688,152 L700,176 L712,148 L722,172" fill="none" stroke="#b6b6ff" stroke-width="3"/>
+    <path d="M652,200 L664,170 L674,186 L688,156 L700,180 L712,152 L722,176" fill="none" stroke="#4a4ab8" stroke-width="2"/>
+  </g>
+  <text x="644" y="230" font-size="9.5" fill="#6b6660">normal map</text>
+
+  <rect x="748" y="130" width="84" height="84" rx="4" fill="#cdbfa8" stroke="#3a3a3a" stroke-width="1"/>
+  <g opacity="0.6" fill="#a89177">
+    <rect x="748" y="150" width="84" height="12"/><rect x="748" y="178" width="84" height="9"/>
+  </g>
+  <text x="748" y="230" font-size="9.5" fill="#6b6660">colour map</text>
+
+  <path d="M736,240 L736,256" stroke="#8a6a3f" stroke-width="1.6" marker-end="url(#c1)"/>
+  <path d="M644,286 L700,262 L772,268 L828,290" fill="none" stroke="#3a3a3a" stroke-width="1.6"/>
+  <path d="M652,282 L664,274 L674,278 L688,270 L700,276 L712,268 L726,274 L740,270 L756,274 L772,271 L790,276 L808,282"
+        fill="none" stroke="#8a6a3f" stroke-width="1" opacity="0.85"/>
+  <text x="644" y="310" font-size="10.5" fill="#1b1a18">simple geometry, shaded as if detailed</text>
+
+  <defs>
+    <marker id="c1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#8a6a3f"/>
+    </marker>
+  </defs>
+</svg>

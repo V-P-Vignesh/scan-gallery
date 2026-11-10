@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" width="920" height="300" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="920" height="300" rx="10" fill="#fbfaf8"/>
+  <text x="24" y="32" font-size="15" font-weight="600" fill="#1b1a18">Poisson reconstruction always closes the surface — the density field tells you where it guessed</text>
+  <text x="24" y="52" font-size="11.5" fill="#6b6660">Poisson is defined to return a watertight solid, so where the scanner saw nothing it invents a skin. The density field is how you find it.</text>
+
+  <g stroke="#e3dfd9" stroke-width="1">
+    <line x1="236" y1="76" x2="236" y2="268"/>
+    <line x1="460" y1="76" x2="460" y2="268"/>
+    <line x1="684" y1="76" x2="684" y2="268"/>
+  </g>
+
+  <!-- 1. cloud with occlusion gap -->
+  <text x="24" y="96" font-size="12" font-weight="600" fill="#1b1a18">1 · The cloud</text>
+  <text x="24" y="112" font-size="10.5" fill="#6b6660">Occluded area behind the</text>
+  <text x="24" y="126" font-size="10.5" fill="#6b6660">shoulder: no points.</text>
+  <g fill="#1b1a18">
+    <circle cx="60" cy="236" r="2.2"/><circle cx="72" cy="222" r="2.2"/><circle cx="84" cy="209" r="2.2"/>
+    <circle cx="98" cy="198" r="2.2"/><circle cx="113" cy="190" r="2.2"/><circle cx="129" cy="185" r="2.2"/>
+    <circle cx="146" cy="183" r="2.2"/>
+    <circle cx="196" cy="190" r="2.2"/><circle cx="206" cy="203" r="2.2"/>
+    <circle cx="214" cy="218" r="2.2"/><circle cx="220" cy="236" r="2.2"/>
+  </g>
+  <path d="M146,170 L196,176" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="140" y="162" font-size="10" fill="#c0392b">gap</text>
+
+  <!-- 2. poisson bridges -->
+  <text x="248" y="96" font-size="12" font-weight="600" fill="#1b1a18">2 · Poisson meshes it</text>
+  <text x="248" y="112" font-size="10.5" fill="#6b6660">A skin is stretched over</text>
+  <text x="248" y="126" font-size="10.5" fill="#6b6660">the gap. Looks solid.</text>
+  <path d="M284,236 Q296,196 340,183 Q392,178 420,200 L444,236" fill="#ffffff" stroke="#3a3a3a" stroke-width="1.4"/>
+  <path d="M370,181 Q396,177 414,194" fill="none" stroke="#c0392b" stroke-width="2.4"/>
+  <text x="356" y="162" font-size="10" fill="#c0392b">invented surface</text>
+
+  <!-- 3. density scalar field -->
+  <text x="472" y="96" font-size="12" font-weight="600" fill="#1b1a18">3 · Density scalar field</text>
+  <text x="472" y="112" font-size="10.5" fill="#6b6660">Blue = few points supported</text>
+  <text x="472" y="126" font-size="10.5" fill="#6b6660">this area. Red = well measured.</text>
+  <path d="M508,236 Q520,196 564,183" fill="none" stroke="#c0392b" stroke-width="3"/>
+  <path d="M564,183 Q588,179 594,179" fill="none" stroke="#e8a33d" stroke-width="3"/>
+  <path d="M594,179 Q626,177 644,194" fill="none" stroke="#2f6fb5" stroke-width="3"/>
+  <path d="M644,194 L668,236" fill="none" stroke="#c0392b" stroke-width="3"/>
+  <rect x="472" y="248" width="150" height="9" rx="2" fill="url(#g1)"/>
+  <text x="472" y="272" font-size="9.5" fill="#6b6660">low density</text>
+  <text x="570" y="272" font-size="9.5" fill="#6b6660">high</text>
+
+  <!-- 4. filtered -->
+  <text x="696" y="96" font-size="12" font-weight="600" fill="#1b1a18">4 · Filter by value</text>
+  <text x="696" y="112" font-size="10.5" fill="#6b6660">Cut the low tail. The hole</text>
+  <text x="696" y="126" font-size="10.5" fill="#6b6660">returns — honest geometry.</text>
+  <path d="M732,236 Q744,196 788,183 Q812,179 818,179" fill="none" stroke="#3a3a3a" stroke-width="1.4"/>
+  <path d="M868,194 L892,236" fill="none" stroke="#3a3a3a" stroke-width="1.4"/>
+  <path d="M818,172 L868,186" stroke="#2f8f4e" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="806" y="162" font-size="10" fill="#2f8f4e">hole kept</text>
+
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#2f6fb5"/><stop offset="0.5" stop-color="#e8a33d"/><stop offset="1" stop-color="#c0392b"/>
+    </linearGradient>
+  </defs>
+</svg>

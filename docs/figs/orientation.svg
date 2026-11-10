@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" width="920" height="300" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="920" height="300" rx="10" fill="#fbfaf8"/>
+  <text x="24" y="32" font-size="15" font-weight="600" fill="#1b1a18">Orientation: a normal has a direction, and the direction must be consistent</text>
+  <text x="24" y="52" font-size="11.5" fill="#6b6660">Fitting a surface gives an axis, not a side. Poisson solves for a surface whose gradient matches these normals — one flipped patch tears it.</text>
+
+  <line x1="460" y1="76" x2="460" y2="276" stroke="#e3dfd9" stroke-width="1"/>
+
+  <!-- LEFT: consistent -->
+  <text x="24" y="98" font-size="12.5" font-weight="600" fill="#1b1a18">Consistent — all outward</text>
+  <path d="M63.4,222 A120,120 0 0 1 288.6,222" fill="none" stroke="#c9c3ba" stroke-width="2"/>
+  <g stroke="#8a6a3f" stroke-width="1.5" marker-end="url(#b1)">
+    <path d="M72,206 L50,192"/>
+    <path d="M98,176 L81,156"/>
+    <path d="M136,156 L127,131"/>
+    <path d="M176,150 L176,124"/>
+    <path d="M216,156 L225,131"/>
+    <path d="M254,176 L271,156"/>
+    <path d="M280,206 L302,192"/>
+  </g>
+  <g fill="#1b1a18">
+    <circle cx="72" cy="206" r="2.4"/><circle cx="98" cy="176" r="2.4"/><circle cx="136" cy="156" r="2.4"/>
+    <circle cx="176" cy="150" r="2.4"/><circle cx="216" cy="156" r="2.4"/><circle cx="254" cy="176" r="2.4"/>
+    <circle cx="280" cy="206" r="2.4"/>
+  </g>
+  <text x="330" y="150" font-size="11" fill="#6b6660">Poisson result:</text>
+  <path d="M330,186 Q376,148 422,186 L422,214 L330,214 Z" fill="#ffffff" stroke="#3a3a3a" stroke-width="1.3"/>
+  <text x="330" y="240" font-size="10.5" fill="#1b1a18">clean, closed surface</text>
+
+  <!-- RIGHT: flipped -->
+  <text x="484" y="98" font-size="12.5" font-weight="600" fill="#1b1a18">Two normals flipped</text>
+  <path d="M523.4,222 A120,120 0 0 1 748.6,222" fill="none" stroke="#c9c3ba" stroke-width="2"/>
+  <g stroke="#8a6a3f" stroke-width="1.5" marker-end="url(#b1)">
+    <path d="M532,206 L510,192"/>
+    <path d="M558,176 L541,156"/>
+    <path d="M676,156 L685,131"/>
+    <path d="M714,176 L731,156"/>
+    <path d="M740,206 L762,192"/>
+  </g>
+  <g stroke="#c0392b" stroke-width="1.8" marker-end="url(#b2)">
+    <path d="M596,156 L605,181"/>
+    <path d="M636,150 L636,176"/>
+  </g>
+  <g fill="#1b1a18">
+    <circle cx="532" cy="206" r="2.4"/><circle cx="558" cy="176" r="2.4"/><circle cx="596" cy="156" r="2.4"/>
+    <circle cx="636" cy="150" r="2.4"/><circle cx="676" cy="156" r="2.4"/><circle cx="714" cy="176" r="2.4"/>
+    <circle cx="740" cy="206" r="2.4"/>
+  </g>
+  <text x="790" y="150" font-size="11" fill="#6b6660">Poisson result:</text>
+  <path d="M790,186 Q812,206 826,176 Q844,150 862,186 L882,214 L790,214 Z" fill="#ffffff" stroke="#c0392b" stroke-width="1.3"/>
+  <text x="790" y="240" font-size="10.5" fill="#c0392b">inverted dent / blob</text>
+
+  <text x="24" y="276" font-size="10.5" fill="#6b6660">Check it before meshing: <tspan font-weight="600" fill="#1b1a18">Edit → Normals → Convert to → RGB</tspan>. Direction becomes colour, so a flipped region shows as an obvious colour patch.</text>
+
+  <defs>
+    <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#8a6a3f"/>
+    </marker>
+    <marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 330" width="920" height="330" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="920" height="330" rx="10" fill="#fbfaf8"/>
+  <text x="24" y="32" font-size="15" font-weight="600" fill="#1b1a18">Normals: what they are, and what the two parameters change</text>
+
+  <!-- divider lines -->
+  <g stroke="#e3dfd9" stroke-width="1">
+    <line x1="318" y1="50" x2="318" y2="300"/>
+    <line x1="628" y1="50" x2="628" y2="300"/>
+  </g>
+
+  <!-- ===== Panel A: what a normal is ===== -->
+  <text x="24" y="68" font-size="12.5" font-weight="600" fill="#1b1a18">A · A normal is a direction</text>
+  <text x="24" y="86" font-size="10.5" fill="#6b6660">For each point, which way the surface faces.</text>
+  <text x="24" y="101" font-size="10.5" fill="#6b6660">Estimated from its neighbours — the scanner</text>
+  <text x="24" y="116" font-size="10.5" fill="#6b6660">never measures it.</text>
+
+  <path d="M33.4,282 A140,140 0 0 1 296.6,282" fill="none" stroke="#c9c3ba" stroke-width="2"/>
+  <g stroke="#8a6a3f" stroke-width="1.5" marker-end="url(#a2)">
+    <path d="M43.8,260 L16.1,244"/>
+    <path d="M75,222.8 L54.4,198.3"/>
+    <path d="M117.1,198.4 L106.2,168.3"/>
+    <path d="M165,190 L165,158"/>
+    <path d="M212.9,198.4 L223.8,168.3"/>
+    <path d="M255,222.8 L275.6,198.3"/>
+    <path d="M286.2,260 L313.9,244"/>
+  </g>
+  <g fill="#1b1a18">
+    <circle cx="43.8" cy="260" r="2.6"/><circle cx="75" cy="222.8" r="2.6"/>
+    <circle cx="117.1" cy="198.4" r="2.6"/><circle cx="165" cy="190" r="2.6"/>
+    <circle cx="212.9" cy="198.4" r="2.6"/><circle cx="255" cy="222.8" r="2.6"/>
+    <circle cx="286.2" cy="260" r="2.6"/>
+  </g>
+  <text x="112" y="300" font-size="10" fill="#6b6660">surface of the object</text>
+
+  <!-- ===== Panel B: plane vs quadric ===== -->
+  <text x="342" y="68" font-size="12.5" font-weight="600" fill="#1b1a18">B · Local surface model</text>
+  <text x="342" y="86" font-size="10.5" fill="#6b6660">The shape fitted through the neighbours.</text>
+  <text x="342" y="101" font-size="10.5" fill="#6b6660">A plane cannot curve, so on a curved object</text>
+  <text x="342" y="116" font-size="10.5" fill="#6b6660">it tilts every normal toward the average.</text>
+
+  <path d="M358,250 Q470,170 582,250" fill="none" stroke="#c9c3ba" stroke-width="2"/>
+  <g fill="#1b1a18">
+    <circle cx="368" cy="242" r="2.6"/><circle cx="400" cy="218" r="2.6"/>
+    <circle cx="432" cy="202" r="2.6"/><circle cx="470" cy="196" r="2.6"/>
+    <circle cx="508" cy="202" r="2.6"/><circle cx="540" cy="218" r="2.6"/>
+    <circle cx="572" cy="242" r="2.6"/>
+  </g>
+  <line x1="372" y1="213" x2="568" y2="213" stroke="#9a948c" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <path d="M378,232 Q470,182 562,232" fill="none" stroke="#8a6a3f" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <path d="M400,218 L400,176" stroke="#9a948c" stroke-width="1.6" marker-end="url(#a3)"/>
+  <path d="M400,218 L379,180" stroke="#8a6a3f" stroke-width="1.8" marker-end="url(#a2)"/>
+  <text x="404" y="172" font-size="10" fill="#9a948c">plane fit</text>
+  <text x="332" y="170" font-size="10" fill="#8a6a3f">quadric</text>
+  <text x="342" y="286" font-size="10.5" fill="#1b1a18">Use <tspan font-weight="600">Quadric</tspan> for statues and curved stone;</text>
+  <text x="342" y="301" font-size="10.5" fill="#1b1a18">Plane only for genuinely flat walls and floors.</text>
+
+  <!-- ===== Panel C: radius ===== -->
+  <text x="652" y="68" font-size="12.5" font-weight="600" fill="#1b1a18">C · Octree radius</text>
+  <text x="652" y="86" font-size="10.5" fill="#6b6660">How far out neighbours are collected.</text>
+  <text x="652" y="101" font-size="10.5" fill="#6b6660">Too large and a chisel groove is averaged</text>
+  <text x="652" y="116" font-size="10.5" fill="#6b6660">into the flat face around it.</text>
+
+  <path d="M652,200 L710,200 L738,240 L766,200 L832,200" fill="none" stroke="#c9c3ba" stroke-width="2"/>
+  <circle cx="723" cy="218" r="38" fill="none" stroke="#9a948c" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <circle cx="723" cy="218" r="14" fill="none" stroke="#8a6a3f" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <circle cx="723" cy="218" r="3" fill="#1b1a18"/>
+  <path d="M723,218 L723,180" stroke="#9a948c" stroke-width="1.6" marker-end="url(#a3)"/>
+  <path d="M723,218 L759,193" stroke="#8a6a3f" stroke-width="1.8" marker-end="url(#a2)"/>
+  <text x="648" y="184" font-size="10" fill="#9a948c">r too large</text>
+  <text x="772" y="176" font-size="10" fill="#8a6a3f">r ≈ 3–5×</text>
+  <text x="772" y="188" font-size="10" fill="#8a6a3f">spacing</text>
+  <text x="652" y="286" font-size="10.5" fill="#1b1a18">Set radius from measured point spacing,</text>
+  <text x="652" y="301" font-size="10.5" fill="#1b1a18">not from the <tspan font-weight="600">Auto</tspan> button.</text>
+
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#8a6a3f"/>
+    </marker>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#9a948c"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 260" width="920" height="260" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="920" height="260" rx="10" fill="#fbfaf8"/>
+  <text x="24" y="32" font-size="15" font-weight="600" fill="#1b1a18">Registration without proprietary software: aligning separate E57 scans in CloudCompare</text>
+  <text x="24" y="52" font-size="11.5" fill="#6b6660">Every station records points in its own frame. Registration finds the rigid transform that puts them all in one frame: coarse, then ICP.</text>
+
+  <g stroke="#e3dfd9" stroke-width="1">
+    <line x1="312" y1="76" x2="312" y2="232"/>
+    <line x1="620" y1="76" x2="620" y2="232"/>
+  </g>
+
+  <!-- 1 misaligned -->
+  <text x="24" y="96" font-size="12.5" font-weight="600" fill="#1b1a18">1 · Separate scans, own frames</text>
+  <path d="M48,200 Q96,140 152,196" fill="none" stroke="#2f6fb5" stroke-width="2"/>
+  <path d="M86,214 Q142,156 196,208" fill="none" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+  <path d="M132,196 Q182,134 240,192" fill="none" stroke="#2f8f4e" stroke-width="2" opacity="0.8"/>
+  <text x="24" y="226" font-size="10.5" fill="#6b6660">same object, three offset copies</text>
+
+  <!-- 2 point pairs -->
+  <text x="336" y="96" font-size="12.5" font-weight="600" fill="#1b1a18">2 · Pick 4 matching points</text>
+  <path d="M352,200 Q400,140 456,196" fill="none" stroke="#2f6fb5" stroke-width="2"/>
+  <path d="M400,212 Q452,154 506,206" fill="none" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+  <g fill="#8a6a3f">
+    <circle cx="371.5" cy="180.6" r="3.4"/><circle cx="396.8" cy="169.5" r="3.4"/>
+    <circle cx="423.1" cy="172.8" r="3.4"/><circle cx="444.9" cy="186" r="3.4"/>
+    <circle cx="420.8" cy="193.2" r="3.4"/><circle cx="447.2" cy="182" r="3.4"/>
+    <circle cx="473.7" cy="184.7" r="3.4"/><circle cx="495.3" cy="196.7" r="3.4"/>
+  </g>
+  <g stroke="#8a6a3f" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="371.5" y1="180.6" x2="420.8" y2="193.2"/><line x1="396.8" y1="169.5" x2="447.2" y2="182"/>
+    <line x1="423.1" y1="172.8" x2="473.7" y2="184.7"/><line x1="444.9" y1="186" x2="495.3" y2="196.7"/>
+  </g>
+  <text x="336" y="226" font-size="10.5" fill="#6b6660">Tools → Registration → Align (point pairs)</text>
+
+  <!-- 3 ICP merged -->
+  <text x="644" y="96" font-size="12.5" font-weight="600" fill="#1b1a18">3 · ICP, then merge</text>
+  <path d="M660,200 Q712,138 772,198" fill="none" stroke="#2f6fb5" stroke-width="2"/>
+  <path d="M662,201 Q714,139 774,199" fill="none" stroke="#c0392b" stroke-width="1.4" opacity="0.7"/>
+  <path d="M658,199 Q710,137 770,197" fill="none" stroke="#2f8f4e" stroke-width="1.4" opacity="0.7"/>
+  <text x="800" y="150" font-size="10.5" fill="#1b1a18">RMS</text>
+  <text x="800" y="166" font-size="10.5" fill="#8a6a3f">2.8 mm</text>
+  <text x="800" y="182" font-size="9.5" fill="#6b6660">record this</text>
+  <text x="644" y="226" font-size="10.5" fill="#6b6660">Fine registration (ICP), then Edit → Merge</text>
+</svg>

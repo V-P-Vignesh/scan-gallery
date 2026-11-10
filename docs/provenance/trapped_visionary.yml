@@ -1,0 +1,94 @@
+# Provenance record — one per published model.
+#
+# WHY THIS FILE EXISTS
+# A 3D model on a web page is a picture unless someone can tell what it is a
+# record OF. This file is the difference. It says what instrument measured the
+# object, how accurately, what was done to the measurements, and where the
+# original data lives. Anyone can then judge whether the model is fit for their
+# purpose, and repeat the work if they disagree with a choice.
+#
+# Fill it while you still remember. Values marked TODO are ones you need to
+# recover or go and look up — leave them as TODO rather than guessing. An
+# honest gap is a gap; an invented number is a false claim.
+#
+# Pre-filled below: everything recoverable from the files and the CloudCompare
+# Properties panel. The rest is yours.
+
+object:
+  name:            Trapped Visionary
+  type:            sculpture
+  location:        IIT Palakkad, Nila Campus, Kanjikode, Kerala, India
+  dimensions_m:    {x: 3.372, y: 3.280, z: 3.540}   # bounding box of the scan as loaded
+  rights:          TODO — who holds copyright in the sculpture itself? (see note at end)
+
+capture:
+  date:            TODO — the date you actually scanned it
+  instrument:      FARO Focus (terrestrial laser scanner)
+  stations:        TODO — how many setups around the object
+  resolution:      TODO — scanner resolution/quality setting used
+  colourised:      TODO — were photographs captured and applied?
+  operator:        V. V. Palanisamy
+
+registration:
+  software:        FARO SCENE
+  method:          TODO — cloud-to-cloud or target-based
+  mean_error_mm:   TODO — from the SCENE registration report. Go and get this one.
+                   #      It is the single number that makes this a survey rather
+                   #      than a 3D scan. Without it you cannot state an accuracy.
+
+point_cloud:
+  exported_as:     E57 (ASTM E2807)
+  file_size_mb:    192
+  points:          13372639
+  spacing_mm:      TODO — measured, not assumed (see METHODOLOGY §4.3)
+  global_shift:    applied on load (Z ≈ 139 m), removed before export to Blender
+
+processing:
+  software:        CloudCompare
+  segmentation:    TODO — what did you cut away? (ground, vegetation, background wall)
+  noise_filter:    TODO — SOR neighbours k, sigma multiplier; points removed
+  subsample:       TODO — space value in m, or "none"
+  normals:
+    surface_model: TODO — plane / quadric / triangulation
+    radius_m:      TODO — the octree radius you entered
+    orientation:   minimum spanning tree
+    knn:           TODO — 6 (the default) or 10
+  meshing:
+    method:        screened Poisson reconstruction
+    octree_depth:  TODO
+    samples_per_node: TODO
+    colours_interpolated: false   # inferred: no colour reached the final model
+  density_filter:  TODO — applied / not applied. If not applied, say so plainly:
+                   #      the mesh then contains interpolated surface across
+                   #      occlusions that is not distinguishable from measured surface.
+  mesh_output:
+    format:        PLY (binary)
+    file_size_mb:  479
+
+delivery:
+  software:        Blender 4.x, scripts/scan_to_glb.py
+  target_triangles: 50000
+  texture_size_px: 2048
+  maps_baked:      [normal]          # colour map absent — no vertex colour in source mesh
+  cage_extrusion:  1% of bounding-box diagonal
+  format:          glTF 2.0 binary (.glb), Draco compressed
+  file_size_mb:    1.5
+  scale:           real-world metric, unmodified
+  known_limitations:
+    - No surface colour. The published model carries geometry and baked surface
+      relief only, rendered in a neutral material.
+    - Fine relief is represented in the normal map, not in geometry. For
+      measurements finer than the 50 k-triangle surface, use the archived mesh
+      or point cloud.
+
+archive:
+  point_cloud:     TODO — where the E57 is kept (institutional store, drive, DOI)
+  high_poly_mesh:  TODO — where the 479 MB PLY is kept
+  retention:       TODO — who is responsible for it and for how long
+
+licence:
+  model:           TODO — e.g. CC BY 4.0
+  # NOTE: scanning creates no rights in the object scanned. For a modern
+  # sculpture the artist or their estate may hold copyright in the work itself,
+  # independently of any rights you hold in the scan. Check before publishing,
+  # and state the position here rather than leaving it ambiguous.

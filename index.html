@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+  Interactive 3D viewer page for GitHub Pages.
+
+  HOW IT WORKS
+  <model-viewer> is a web component from Google: one custom HTML tag that wraps
+  three.js/WebGL and handles orbit controls, lighting, progressive loading and AR.
+  No build step, no npm, no server — it is a static page, which is exactly what
+  GitHub Pages serves.
+
+  WHY THIS AND NOT A SCREENSHOT
+  A reviewer, supervisor or client can rotate the artefact, zoom to the tool marks,
+  and on a phone place it at true size in their own room. That is the difference
+  between "I did a scan" and "here is the deliverable". The GLB is metrically
+  correct, so the AR placement is a real measurement, not a visual effect.
+
+  USAGE
+  Put your .glb files in  models/  next to this file, add a poster image (optional,
+  a still render speeds up perceived load), and edit the MODELS list below.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Scan Gallery — Terrestrial Laser Scanning</title>
+
+<!-- model-viewer, pinned to a tested version (do not float to 'latest': it tracks three.js closely) -->
+<script type="module"
+        src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
+
+<style>
+  :root{
+    --bg:#faf9f7; --fg:#1b1a18; --muted:#6b6660; --line:#e3dfd9; --accent:#8a6a3f;
+    --card:#ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#15141a; --fg:#ece9e4; --muted:#9a948c; --line:#2d2b33; --accent:#c9a66b;
+           --card:#1e1d24; }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:0 16px;
+  }
+  .wrap{max-width:1000px; margin:0 auto; padding:48px 0 80px}
+  header{border-bottom:1px solid var(--line); padding-bottom:24px; margin-bottom:40px}
+  h1{font-size:clamp(1.5rem,4vw,2.1rem); margin:0 0 8px; letter-spacing:-.02em}
+  .sub{color:var(--muted); margin:0; max-width:60ch}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; margin-bottom:36px;
+  }
+  model-viewer{
+    width:100%; height:min(70vh,560px); display:block;
+    background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.06));
+    --poster-color:transparent;
+  }
+  .meta{padding:18px 20px; border-top:1px solid var(--line)}
+  .meta h2{margin:0 0 6px; font-size:1.05rem; letter-spacing:-.01em}
+  .meta p{margin:0 0 10px; color:var(--muted); font-size:.93rem}
+  .specs{display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none}
+  .specs li{
+    font-size:.78rem; color:var(--muted); border:1px solid var(--line);
+    border-radius:999px; padding:3px 10px; font-variant-numeric:tabular-nums;
+  }
+  .hint{
+    position:absolute; bottom:12px; left:12px; font-size:.75rem; color:var(--muted);
+    background:var(--card); border:1px solid var(--line); border-radius:6px; padding:4px 8px;
+    pointer-events:none; opacity:.9;
+  }
+  .shell{position:relative}
+  button[slot="ar-button"]{
+    position:absolute; bottom:12px; right:12px; border:1px solid var(--line);
+    background:var(--card); color:var(--fg); border-radius:8px; padding:8px 14px;
+    font:inherit; font-size:.82rem; cursor:pointer;
+  }
+  .err{padding:40px 20px; text-align:center; color:var(--muted); font-size:.9rem}
+  footer{color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); padding-top:20px}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>3D Scan Gallery</h1>
+    <p class="sub">
+      Heritage objects and building elements documented with terrestrial laser scanning,
+      processed to web-ready models. Drag to rotate, scroll to zoom. On a phone, tap
+      <em>View in your space</em> to place the object at true physical size.
+    </p>
+  </header>
+
+  <div id="gallery"></div>
+
+  <footer>
+    Capture: FARO Focus TLS · Registration: FARO SCENE · Meshing: CloudCompare (Poisson) ·
+    Retopology &amp; texture baking: Blender · Delivery: glTF&nbsp;2.0 (Draco-compressed).
+    Models are to real-world scale.
+  </footer>
+</div>
+
+<script type="module">
+/* ------------------------------------------------------------------
+   Edit this list only. Everything below builds itself from it.
+   ------------------------------------------------------------------ */
+const MODELS = [
+  {
+    src:    "models/trapped_visionary.glb",
+    poster: "",
+    title:  "Trapped Visionary — IIT Palakkad",
+    blurb:  "Five-station TLS capture, registered in FARO SCENE, meshed by screened " +
+            "Poisson reconstruction and retopologised with surface detail baked from " +
+            "the source mesh. Geometry only; colour not carried through on this model.",
+    specs:  ["50 k triangles", "~2 mm point spacing", "13.4 M points captured", "GLB 1.5 MB"]
+  },
+];
+const gallery = document.getElementById("gallery");
+
+for (const m of MODELS){
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="shell">
+      <model-viewer
+        src="${m.src}"
+        ${m.poster ? `poster="${m.poster}"` : ""}
+        alt="${m.title}"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        auto-rotate-delay="2500"
+        rotation-per-second="12deg"
+        interaction-prompt="auto"
+        shadow-intensity="0.9"
+        shadow-softness="0.7"
+        exposure="1.0"
+        environment-image="neutral"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        loading="lazy"
+        reveal="auto">
+        <button slot="ar-button">View in your space</button>
+        <div class="err" slot="error">Model could not be loaded.</div>
+      </model-viewer>
+      <span class="hint">drag to rotate · scroll to zoom</span>
+    </div>
+    <div class="meta">
+      <h2>${m.title}</h2>
+      <p>${m.blurb}</p>
+      <ul class="specs">${m.specs.map(s => `<li>${s}</li>`).join("")}</ul>
+    </div>`;
+  gallery.appendChild(card);
+}
+</script>
+</body>
+</html>
